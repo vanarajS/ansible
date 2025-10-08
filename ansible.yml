@@ -1,0 +1,6 @@
+---
+- name: Create user
+  hosts: all
+  tasks:
+  - name: test
+    ansible.buildin.t
