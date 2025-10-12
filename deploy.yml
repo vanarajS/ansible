@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels: 
+    app: fe
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      type: web
+  template:
+    metadata:
+      labels:
+        type: web
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx
+        envFrom:
+        - configMapRef:
+            name: nginx-config
+        volumeMounts:
+        - mountPath: /opt/
+          name: data-dir
+
+      volumes:
+      - name: data-dir
+        persistentVolumeClaim:
+          claimName: pvc-nginx
