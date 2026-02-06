@@ -38,7 +38,7 @@
     remote_src: yes
     owner: sonar
     group: sonar
-    creates: /opt/sonarqube/sonarqube-25.2.0.10270/
+    creates: /opt/sonarqube/sonarqube-25.2.0.102705
 
 - name: Extract Sonar Scanner
   ansible.builtin.unarchive:
@@ -55,7 +55,7 @@
     dest: "{{ item.dest }}"
     remote_src: yes
   loop:
-    - src: /opt/sonarqube/sonarqube-25.2.0.10270/
+    - src: /opt/sonarqube/sonarqube-25.2.0.102705/
       dest: /opt/sonarqube
     - src: /opt/sonar-scanner/sonar-scanner-7.0.1.4817-linux-x64/
       dest: /opt/sonar-scanner
