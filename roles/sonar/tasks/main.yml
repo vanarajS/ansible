@@ -1,7 +1,5 @@
 ---
 # tasks file for sonar
----
-# tasks file for sonar
 
 - name: Create sonar user
   ansible.builtin.user:
