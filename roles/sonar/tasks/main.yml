@@ -51,9 +51,22 @@
 
 - name: Move files  
   copy:
-    src: /opt/sonarqube/sonarqube-25.2.0.102705/
-    dest: /opt/sonarqube
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     remote_src: yes
+  loop:
+    - src: /opt/sonarqube/sonarqube-25.2.0.10270
+      dest: /opt/sonarqube
+    - src: /opt/sonar-scanner/sonar-scanner-7.0.1.4817-linux-x64
+      dest: /opt/sonar-scanner
+
+- name: Delete zip file 
+  file:
+    state: absent
+    path: "{{ item }}"
+  loop:
+    - /opt/sonarqube/sonarqube-25.2.0.10270
+    - /opt/sonar-scanner/sonar-scanner-7.0.1.4817-linux-x64
 
 # - name: Configure DB Connection
 #   ansible.builtin.lineinfile:
