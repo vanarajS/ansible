@@ -3,6 +3,6 @@ handlers:
     ansible.builtin.systemd:
       daemon_reload: yes
 
-    ansible.builtin.systemd:
+  - ansible.builtin.systemd:
       name: sonarqube
       state: restarted
