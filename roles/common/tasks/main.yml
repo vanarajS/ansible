@@ -1,15 +1,16 @@
 ---
 # tasks file for common
-- name: apt update
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-
 
 - name: apt remove
   ansible.builtin.apt:
     name: jtreg7
     state: absent
+    clean: yes
+    
+- name: apt update
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: common package installation
   ansible.builtin.apt:
