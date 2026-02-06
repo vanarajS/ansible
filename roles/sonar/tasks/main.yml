@@ -38,7 +38,7 @@
     remote_src: yes
     owner: sonar
     group: sonar
-    creates: /opt/sonarqube/sonarqube-25.2.0.102705
+    creates: /opt/sonarqube
 
 - name: Extract Sonar Scanner
   ansible.builtin.unarchive:
@@ -47,4 +47,8 @@
     remote_src: yes
     owner: sonar
     group: sonar
-    creates: /opt/sonar-scanner/sonar-scanner-7.0.1.4817-linux-x64
+    creates: /opt/sonar-scanner
+
+# - name: Configure DB Connection
+#   ansible.builtin.lineinfile:
+#     path: /opt/
