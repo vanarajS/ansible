@@ -1,0 +1,6 @@
+- name: Install sonarqube
+  hosts: all
+  roles:
+   - common
+   - postgres
+   - sonar

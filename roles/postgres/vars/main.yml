@@ -1,0 +1,9 @@
+---
+# vars file for postgres
+
+sonar_user: sonar
+sonar_password: root
+package:
+  - postgresql-common
+  - postgresql
+  - python3-psycopg2

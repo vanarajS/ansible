@@ -1,0 +1,6 @@
+---
+# vars file for common
+common_package:
+  - unzip
+  - wget
+  - openjdk-17-jdk

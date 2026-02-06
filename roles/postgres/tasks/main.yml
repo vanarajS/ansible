@@ -1,0 +1,33 @@
+---
+# tasks file for postgres
+- name: Install postgres
+  ansible.builtin.apt:
+    state: present
+    name: "{{ package }}"
+
+- name: Enable postgres
+  ansible.builtin.systemd:
+    state: started
+    enabled: yes
+- name: Create sonarqube DB in postgres
+  community.postgresql.postgresql_db:
+    name: sonarqube
+    become_user: postgres
+
+- name: Change sonar user sonar_password
+  community.postgresql.postgresql_user:
+    name: "{{ sonar_user }}"
+    password: "{{ sonar_password }}"
+    db: sonarqube
+    state: present
+  become_user: postgres
+  no_log: true
+
+- name: Grant pri for sonarqube user 
+  community.postgresql.postgresql_privs:
+    db: sonarqube
+    role: "{{ sonar_user }}"
+    type: database
+    privs: ALL
+  become_user: postgres
+      
