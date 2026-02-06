@@ -3,4 +3,4 @@
 sonar_db_user: "sonarqube"
 sonar_db_password: "root"
 sonarqube_db_name: "sonarqube"
-sonar_java_heap: 1024
+sonar_java_heap: 4000
