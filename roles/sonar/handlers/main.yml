@@ -1,8 +1,7 @@
-handlers:
-  - name: daemon-reload
-    ansible.builtin.systemd:
-      daemon_reload: yes
+- name: daemon-reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
 
-  - ansible.builtin.systemd:
-      name: sonarqube
-      state: restarted
+- ansible.builtin.systemd:
+    name: sonarqube
+    state: restarted
