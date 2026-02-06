@@ -78,6 +78,9 @@
     - { key: "sonar.jdbc.username", value: "{{ sonar_db_user }}" }
     - { key: "sonar.jdbc.password", value: "{{ sonar_db_password }}" }
     - { key: "sonar.jdbc.url", value: "jdbc:postgresql://localhost:5432/{{ sonarqube_db_name }}" }
+    - { key: "sonar.web.javaAdditionalOpts", value: "-server" }
+    - { key: "sonar.web.host", value: "0.0.0.0" }
+    - { key: "sonar.web.port", value: "9000" }
 
 
 
