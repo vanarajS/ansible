@@ -5,8 +5,7 @@
   ansible.builtin.apt:
     name: jtreg7
     state: absent
-    clean: yes
-    
+
 - name: apt update
   ansible.builtin.apt:
     update_cache: yes
