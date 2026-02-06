@@ -49,6 +49,12 @@
     group: sonar
     creates: /opt/sonar-scanner
 
+- name: Move files  
+  copy:
+    src: /opt/sonarqube/sonarqube-25.2.0.102705 
+    dest: /opt/sonarqube
+    remote_src: yes
+
 # - name: Configure DB Connection
 #   ansible.builtin.lineinfile:
 #     path: /opt/
