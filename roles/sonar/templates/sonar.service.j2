@@ -1,0 +1,15 @@
+[Unit]
+Description=SonarQube service
+After=network.target postgresql.service
+
+[Service]
+Type=forking
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+User=sonarqube
+Group=sonarqube
+LimitNOFILE=65536
+Environment="SONAR_JAVA_OPTS=-Xmx{{ sonar_java_heap }}m"
+
+[Install]
+WantedBy=multi-user.target
