@@ -91,7 +91,7 @@
 
 - name: Create sonar-scanner symlink
   ansible.builtin.file:
-    src: /opt/sonarscanner/bin/sonar-scanner
+    src: /opt/sonars-scanner/bin/sonar-scanner
     dest: /usr/local/bin/sonar-scanner
     state: link
     owner: root
