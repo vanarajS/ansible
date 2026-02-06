@@ -82,6 +82,15 @@
     - { key: "sonar.web.host", value: "0.0.0.0" }
     - { key: "sonar.web.port", value: "9000" }
 
+- name: sonar-scanner Configure
+  ansible.builtin.lineinfile:
+    path: /opt/sonarscanner/conf/sonar-scanner.properties
+    regexp: "^sonar.host.url="
+    line: "sonar.host.url=127.0.0.1"
+    backup: yes
+
+
+
 - name: Change ownnership
   ansible.builtin.file:
     path: "{{ item }}"
@@ -92,6 +101,7 @@
   loop:
     - /opt/sonarqube
     - /opt/sonar-scanner
+
 
 - name: Deploy systemd service template
   ansible.builtin.template:
