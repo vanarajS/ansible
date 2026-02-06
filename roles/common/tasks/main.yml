@@ -1,10 +1,10 @@
 ---
 # tasks file for common
 
-- name: apt remove
-  ansible.builtin.apt:
-    name: jtreg7
-    state: absent
+# - name: apt remove
+#   ansible.builtin.apt:
+#     name: jtreg7
+#     state: absent
 
 - name: apt update
   ansible.builtin.apt:
