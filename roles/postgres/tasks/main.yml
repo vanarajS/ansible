@@ -12,17 +12,18 @@
     enabled: yes
 
 - name: Create sonarqube DB in postgres
+  become_user: postgres
   community.postgresql.postgresql_db:
     name: sonarqube
-    become_user: postgres
+
 
 - name: Change sonar user sonar_password
+  become_user: postgres
   community.postgresql.postgresql_user:
     name: "{{ sonar_user }}"
     password: "{{ sonar_password }}"
     db: sonarqube
     state: present
-  become_user: postgres
   no_log: true
 
 - name: Grant pri for sonarqube user 
