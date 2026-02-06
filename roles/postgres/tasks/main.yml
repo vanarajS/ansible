@@ -40,4 +40,5 @@
     role: "{{ sonar_user }}"
     type: schema
     privs: ALL
+    objs: public
   become_user: postgres
