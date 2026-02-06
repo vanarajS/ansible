@@ -3,4 +3,4 @@
 common_package:
   - unzip
   - wget
-  - openjdk-*
+  - openjdk-17-jdk-headless
