@@ -8,4 +8,5 @@
 - name: common package installation
   ansible.builtin.apt:
     state: present
+    update_cache: yes
     name: "{{ common_package }}"

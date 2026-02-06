@@ -31,3 +31,10 @@
     privs: ALL
   become_user: postgres
       
+- name: Grant priv for sonar_user for public 
+  community.postgresql.postgresql_privs:
+    db: sonarqube
+    role: "{{ sonar_user }}"
+    type: schema
+    privs: ALL
+  become_user: postgres
