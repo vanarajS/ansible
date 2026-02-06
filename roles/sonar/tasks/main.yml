@@ -3,7 +3,7 @@
 
 - name: Create sonar user
   ansible.builtin.user:
-    name: sonar
+    name: sonarqube
     shell: /usr/sbin/nologin
     create_home: yes
 
@@ -12,8 +12,8 @@
     path: "{{ item }}"
     state: directory
     mode: "0755"
-    owner: sonar
-    group: sonar
+    owner: sonarqube
+    group: sonarqube
   loop:
     - /tmp/sonarqube
     - /opt/sonarqube
@@ -36,8 +36,8 @@
     src: /tmp/sonarqube/sonarqube.zip
     dest: /opt/sonarqube
     remote_src: yes
-    owner: sonar
-    group: sonar
+    owner: sonarqube
+    group: sonarqube
     creates: /opt/sonarqube/sonarqube-25.2.0.102705
 
 - name: Extract Sonar Scanner
@@ -45,8 +45,8 @@
     src: /tmp/sonarqube/sonar-scanner.zip
     dest: /opt/sonar-scanner
     remote_src: yes
-    owner: sonar
-    group: sonar
+    owner: sonarqube
+    group: sonarqube
     creates: /opt/sonar-scanner/sonar-scanner-7.0.1.4817-linux-x64/
 
 - name: Move files  
