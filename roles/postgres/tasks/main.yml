@@ -7,9 +7,10 @@
 
 - name: Enable postgres
   ansible.builtin.systemd:
+    name: postgres
     state: started
     enabled: yes
-    
+
 - name: Create sonarqube DB in postgres
   community.postgresql.postgresql_db:
     name: sonarqube
