@@ -1,2 +1,52 @@
 ---
 # tasks file for sonar
+---
+# tasks file for sonar
+
+- name: Create sonar user
+  ansible.builtin.user:
+    name: sonar
+    shell: /usr/sbin/nologin
+    create_home: yes
+
+- name: Create required directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: sonar
+    group: sonar
+  loop:
+    - /tmp/sonarqube
+    - /opt/sonarqube
+    - /opt/sonar-scanner
+
+- name: Download SonarQube and Scanner zip files
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    mode: "0644"
+  loop:
+    - url: https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-25.2.0.102705.zip
+      dest: /tmp/sonarqube/sonarqube.zip
+
+    - url: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.1.4817-linux-x64.zip
+      dest: /tmp/sonarqube/sonar-scanner.zip
+
+- name: Extract SonarQube
+  ansible.builtin.unarchive:
+    src: /tmp/sonarqube/sonarqube.zip
+    dest: /opt/sonarqube
+    remote_src: yes
+    owner: sonar
+    group: sonar
+    creates: /opt/sonarqube/sonarqube-25.2.0.102705
+
+- name: Extract Sonar Scanner
+  ansible.builtin.unarchive:
+    src: /tmp/sonarqube/sonar-scanner.zip
+    dest: /opt/sonar-scanner
+    remote_src: yes
+    owner: sonar
+    group: sonar
+    creates: /opt/sonar-scanner/sonar-scanner-7.0.1.4817-linux-x64
