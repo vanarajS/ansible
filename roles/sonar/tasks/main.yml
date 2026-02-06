@@ -112,6 +112,32 @@
     - /opt/sonarqube
     - /opt/sonar-scanner
 
+- name: Set sysctl vm.max_map_count for Elasticsearch
+  ansible.builtin.sysctl:
+    name: vm.max_map_count
+    value: '524288'
+    state: present
+    reload: yes
+
+- name: Set sysctl fs.file-max
+  ansible.builtin.sysctl:
+    name: fs.file-max
+    value: '131072'
+    state: present
+    reload: yes
+
+# Alternative: Direct file edit (more explicit)
+- name: Configure sysctl.conf for boot persistence
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^{{ item.name }}='
+    line: "{{ item.name }}={{ item.value }}"
+    backup: yes
+  loop:
+    - { name: 'vm.max_map_count', value: '524288' }
+    - { name: 'fs.file-max', value: '131072' }
+
+
 
 - name: Deploy systemd service template
   ansible.builtin.template:
