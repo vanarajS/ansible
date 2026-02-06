@@ -3,4 +3,4 @@
 common_package:
   - unzip
   - wget
-  - openjdk-17-jdk
+  - openjdk-*
