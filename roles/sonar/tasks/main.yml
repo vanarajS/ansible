@@ -84,7 +84,7 @@
 
 - name: sonar-scanner Configure
   ansible.builtin.lineinfile:
-    path: /opt/sonarscanner/conf/sonar-scanner.properties
+    path: /opt/sonar-scanner/conf/sonar-scanner.properties
     regexp: "^sonar.host.url="
     line: "sonar.host.url=127.0.0.1"
     backup: yes
