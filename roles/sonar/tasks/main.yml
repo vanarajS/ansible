@@ -71,13 +71,14 @@
 - name: Configure DB Connection
   ansible.builtin.lineinfile:
     path: /opt/sonarqube/conf/sonar.properties
-    regexp:
-    line: 
+    regexp: "^{{ item.key }}="
+    line: "{{ item.key }}={{ item.value }}"
     backup: yes
   loop:
-    - { regexp: 'sonar\.jdbc\.username', key: 'sonar.jdbc.username', value: "{{ sonar_db_user }}" }
-    - { regexp: 'sonar\.jdbc\.password', key: 'sonar.jdbc.password', value: "{{ sonar_db_password }}" }
-    - { regexp: 'sonar\.jdbc\.url', key: 'sonar.jdbc.url', value: "jdbc:postgresql://localhost:5432/{{ sonarqube_db_name }}" }
+    - { key: "sonar.jdbc.username", value: "{{ sonar_db_user }}" }
+    - { key: "sonar.jdbc.password", value: "{{ sonar_db_password }}" }
+    - { key: "sonar.jdbc.url", value: "jdbc:postgresql://localhost:5432/{{ sonarqube_db_name }}" }
+
 
 
 - name: Deploy systemd service template
