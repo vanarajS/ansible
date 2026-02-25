@@ -1,6 +1,7 @@
 name: Generate dragon
 on:
-  push:
+  push: 
+  workflow_dispatch:
 jobs:
   asc_job:
     runs-on: ubuntu-20.04
