@@ -1,0 +1,21 @@
+name: Generate dragon
+on:
+  push:
+jobs:
+  asc_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install
+        run: sudo apt get install cowsay -y
+      - name: Excute cmd
+        run: cowsay -f dragon "Run for cover, I am Dragon" >> dragon.txt
+
+      - name: test file
+        run: grep -i dragon dragon.txt
+
+      - name: Read file
+        run: cat dragon.txt
+      - name: Checkout repo files
+        run: ls -lrtha
