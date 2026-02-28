@@ -12,10 +12,21 @@ jobs:
       - name: update file
         run: cowsay -f dragon "Run for cover, I am Dragon" >> dragon.txt
 
+      - name: Upload file
+        uses: actions/upload-artifact@v7.0.0
+        with:
+          name: dragon-file
+          path: ./dragon.txt
+
   test_job:
     needs: build_job
     runs-on: ubuntu-latest
     steps:
+      - name: Download file
+        uses: actions/download-artifact@v8.0.0
+        with:
+          name: dragon-file
+          
       - name: Grep file
         run: grep -i dragon dragon.txt
 
@@ -23,5 +34,10 @@ jobs:
     needs: test_job
     runs-on: ubuntu-latest
     steps:
+      - name: Download file
+        uses: actions/download-artifact@v8.0.0
+        with:
+          name: dragon-file
+          
       - name: Cat file
         run: cat dragon.txt
