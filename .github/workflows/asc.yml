@@ -3,17 +3,23 @@ on:
   push: 
   workflow_dispatch:
 jobs:
-  asc_job:
-    runs-on: ubuntu-24.04-arm
+  build_job:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Install cowsay
+        run: sudo apt-get install cowsay -y
 
-      - name: list  files
-        run: ls -l
-        
-      - name: Run shell script
-        run: |
-          chmod 755 ./ascii.sh
-          sh ./ascii.sh
+      - name: update file
+        run: cowsay -f dragon "Run for cover, I am Dragon" >> dragon.txt
 
+  test_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Grep file
+        run: grep -i dragon dragon.txt
+
+  deploy_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cat file
+        run: cat dragon.txt
