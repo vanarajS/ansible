@@ -2,6 +2,15 @@ name: Generate dragon
 on:
   push: 
   workflow_dispatch:
+    inputs:
+      env:
+        description: Which env should be running
+        required: true
+        default: Dev
+        options:
+          - Dev
+          - Staging
+          - Prod
 jobs:
   build_job:
     runs-on: ubuntu-latest
