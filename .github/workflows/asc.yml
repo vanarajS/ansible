@@ -7,6 +7,7 @@ on:
         description: Which env should be running
         required: true
         default: Dev
+        type: choice
         options:
           - Dev
           - Staging
