@@ -11,6 +11,11 @@ on:
           - Dev
           - Staging
           - Prod
+      test:
+        required: true 
+        default: true
+        options:
+          - Dev
 jobs:
   build_job:
     runs-on: ubuntu-latest
