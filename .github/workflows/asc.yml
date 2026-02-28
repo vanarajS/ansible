@@ -8,15 +8,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install
-        run: sudo apt-get install cowsay -y
-      - name: Excute cmd
-        run: cowsay -f dragon "Run for cover, I am Dragon" >> dragon.txt
 
-      - name: test file
-        run: grep -i dragon dragon.txt
+      - name: list  files
+        run: ls -l
+        
+      - name: Run shell script
+        run: |
+          chmod 755 ./ascii.sh
+          sh ./ascii.sh
 
-      - name: Read file
-        run: cat dragon.txt
-      - name: Checkout repo files
-        run: ls -lrtha
