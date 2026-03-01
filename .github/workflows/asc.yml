@@ -2,7 +2,7 @@ name: Generate dragon
 on:
   push: 
     branches:
-      - main/**
+      - 'main/**'
       - '!feature/**'
   workflow_dispatch:
     inputs:
