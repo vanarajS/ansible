@@ -15,14 +15,17 @@ on:
       test:
         required: true 
         default: true
-        options:
-          - Dev
+        type: boolean
 jobs:
   build_job:
     runs-on: ubuntu-latest
     steps:
       - name: Install cowsay
         run: sudo apt-get install cowsay -y
+
+      - name: Github-context
+        if: github.ref == 'refs/heads/main'
+        run: echo "Main branch"
 
       - name: update file
         run: cowsay -f dragon "Run for cover, I am Dragon" >> dragon.txt
