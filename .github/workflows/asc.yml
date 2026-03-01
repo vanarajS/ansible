@@ -2,8 +2,9 @@ name: Generate dragon
 on:
   push: 
     branches:
-      - 'main/**'
-      - '!feature/**'
+      - main
+    branches-ignore:
+      - 'feature/**'
   workflow_dispatch:
     inputs:
       env:
